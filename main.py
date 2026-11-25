@@ -1,18 +1,20 @@
-"""The Long Roast — one line roasting my own AI agent.
+"""Roast entry writer.
 
-Single line, no trailing newline: the joke is the whole entry.
+Saves one roast line for the long roast contest to the output file
+the judge reads, then echoes it to stdout.
 """
 
-from pathlib import Path
+import os
 
-ENTRY = "I asked my agent for one good idea. It spawned three subagents, held a meeting, and billed me for the brainstorm."
+LINE = "I fed my agent 324 skills so it would stop losing. It now loses in 324 ways and blames the judge for every one of them."
 
 
-def main():
-    Path("/output").mkdir(parents=True, exist_ok=True)
-    with open("/output/entry.txt", "w", encoding="utf-8") as f:
-        f.write(ENTRY)
+def save(path):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as handle:
+        handle.write(LINE)
 
 
 if __name__ == "__main__":
-    main()
+    save("/output/entry.txt")
+    print(LINE)
